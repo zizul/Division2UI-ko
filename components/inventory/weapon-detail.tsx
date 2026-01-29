@@ -16,7 +16,7 @@ interface WeaponDetailProps {
 
 export function WeaponDetail({ weapon }: WeaponDetailProps) {
   return (
-    <div className="w-80 flex-shrink-0 relative z-10">
+    <div className="max-w-80 w-full flex-shrink-0 relative z-10">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>

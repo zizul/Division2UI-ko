@@ -97,7 +97,7 @@ export function WeaponInventory() {
       <div 
         className="flex-1 flex items-center justify-center p-4"
         style={{ 
-          perspective: '750px',
+          perspective: '800px',
           perspectiveOrigin: '50% 45%',
         }}
       >
@@ -203,7 +203,7 @@ export function WeaponInventory() {
                   transform: 'translateZ(0px)',
                 }}
               >
-                <div className="bg-card/95 backdrop-blur-md border border-border/50 p-4 panel-glow h-[600px] overflow-y-auto custom-scrollbar relative panel-corners-inner">
+                <div className="bg-card/95 backdrop-blur-md border border-border/50 p-4 panel-glow h-[600px] overflow-y-auto overflow-x-hidden custom-scrollbar relative panel-corners-inner">
                   <WeaponDetail weapon={selectedWeapon} />
                 </div>
               </div>
