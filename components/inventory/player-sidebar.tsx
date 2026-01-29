@@ -27,7 +27,7 @@ export function PlayerSidebar({ stats }: PlayerSidebarProps) {
       {/* Score Circle */}
       <div className="relative">
         <div className="w-24 h-24 rounded-full border-4 border-orange-glow/30 flex items-center justify-center relative">
-          <div className="absolute inset-0 rounded-lg border-4 border-transparent border-t-orange-glow border-b-orange-glow animate-spin" style={{ animationDuration: '60s' }} />
+          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-orange-glow border-b-orange-glow animate-spin" style={{ animationDuration: '60s' }} />
           <div className="text-center">
             <span className="text-xs text-muted-foreground block">SCORE</span>
             <span className="text-2xl font-bold text-foreground">{stats.score}</span>
@@ -37,7 +37,7 @@ export function PlayerSidebar({ stats }: PlayerSidebarProps) {
 
       {/* Emblem */}
       <div className="w-16 h-16 border border-border/50 flex items-center justify-center">
-        <Award className="w-10 h-10 text-orange-dim" />
+        < className="w-10 h-10 text-orange-dim" />
       </div>
 
       {/* Armor Stat */}

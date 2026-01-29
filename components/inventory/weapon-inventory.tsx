@@ -209,30 +209,30 @@ export function WeaponInventory() {
               </div>
             )}
           </div>
-                {/* Action Bar - Fixed at bottom with 3D effect */}
-      <div 
-        className="relative z-10"
-        style={{
-          perspective: '800px',
-          perspectiveOrigin: '50% 100%',
-        }}
-      >
-        <div 
-          className="bg-card/90 backdrop-blur-md border-t border-border/30 panel-glow"
-          style={{
-            transformStyle: 'preserve-3d',
-            transform: 'rotateX(-8deg) translateY(-5px) translateZ(30px)',
-            transformOrigin: 'center bottom',
-          }}
-        >
-          <ActionBar
-            onEquip={handleEquip}
-            onDeconstruct={handleDeconstruct}
-            onBack={handleBack}
-            isEquipped={equippedWeaponId === selectedWeapon?.id}
-          />
-        </div>
-      </div>
+          {/* Action Bar - Fixed at bottom with 3D effect */}
+          <div 
+            className="relative z-10"
+            style={{
+              perspective: '800px',
+              perspectiveOrigin: '50% 100%',
+            }}
+          >
+            <div 
+              className="bg-card/90 backdrop-blur-md border-t border-border/30 panel-glow"
+              style={{
+                transformStyle: 'preserve-3d',
+                transform: 'rotateX(-8deg) translateY(-5px) translateZ(30px)',
+                transformOrigin: 'center bottom',
+              }}
+            >
+              <ActionBar
+                onEquip={handleEquip}
+                onDeconstruct={handleDeconstruct}
+                onBack={handleBack}
+                isEquipped={equippedWeaponId === selectedWeapon?.id}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
