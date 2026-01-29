@@ -37,7 +37,7 @@ export function PlayerSidebar({ stats }: PlayerSidebarProps) {
 
       {/* Emblem */}
       <div className="w-16 h-16 border border-border/50 flex items-center justify-center">
-        < className="w-10 h-10 text-orange-dim" />
+        <Award className="w-10 h-10 text-orange-dim" />
       </div>
 
       {/* Armor Stat */}
