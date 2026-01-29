@@ -209,10 +209,7 @@ export function WeaponInventory() {
               </div>
             )}
           </div>
-        </div>
-      </div>
-
-      {/* Action Bar - Fixed at bottom with 3D effect */}
+                {/* Action Bar - Fixed at bottom with 3D effect */}
       <div 
         className="relative z-10"
         style={{
@@ -236,6 +233,10 @@ export function WeaponInventory() {
           />
         </div>
       </div>
+        </div>
+      </div>
+
+
     </div>
   );
 }
