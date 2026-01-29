@@ -14,7 +14,7 @@ const playerStats = {
   score: 263,
   armor: 67468,
   health: 32951,
-  credits: 22186,
+  credits: 22185,
 };
 
 export function WeaponInventory() {
@@ -97,8 +97,8 @@ export function WeaponInventory() {
       <div 
         className="flex-1 flex items-center justify-center p-4"
         style={{ 
-          perspective: '2200px',
-          perspectiveOrigin: '50% 50%',
+          perspective: '1800px',
+          perspectiveOrigin: '50% 45%',
         }}
       >
         {/* Main Panel - The base surface rotated in space */}
@@ -106,7 +106,7 @@ export function WeaponInventory() {
           className="relative"
           style={{
             transformStyle: 'preserve-3d',
-            transform: 'rotateY(-25deg) rotateX(2deg) scale(0.85)',
+            transform: 'rotateY(-25deg) rotateX(2deg)',
           }}
         >
           {/* Main Panel Surface (virtual backing) */}
@@ -209,33 +209,34 @@ export function WeaponInventory() {
               </div>
             )}
           </div>
+          {/* Action Bar - Fixed at bottom with 3D effect */}
+          <div 
+            className="relative z-10"
+            style={{
+              perspective: '800px',
+              perspectiveOrigin: '50% 100%',
+            }}
+          >
+            <div 
+              className="bg-card/90 backdrop-blur-md border-t border-border/30 panel-glow"
+              style={{
+                transformStyle: 'preserve-3d',
+                transform: 'rotateX(-8deg) translateY(-5px) translateZ(30px)',
+                transformOrigin: 'center bottom',
+              }}
+            >
+              <ActionBar
+                onEquip={handleEquip}
+                onDeconstruct={handleDeconstruct}
+                onBack={handleBack}
+                isEquipped={equippedWeaponId === selectedWeapon?.id}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Action Bar - Fixed at bottom with 3D effect */}
-      <div 
-        className="relative z-10"
-        style={{
-          perspective: '800px',
-          perspectiveOrigin: '50% 100%',
-        }}
-      >
-        <div 
-          className="bg-card/90 backdrop-blur-md border-t border-border/30 panel-glow"
-          style={{
-            transformStyle: 'preserve-3d',
-            transform: 'rotateX(-8deg) translateY(-5px) translateZ(30px)',
-            transformOrigin: 'center bottom',
-          }}
-        >
-          <ActionBar
-            onEquip={handleEquip}
-            onDeconstruct={handleDeconstruct}
-            onBack={handleBack}
-            isEquipped={equippedWeaponId === selectedWeapon?.id}
-          />
-        </div>
-      </div>
+
     </div>
   );
 }

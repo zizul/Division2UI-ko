@@ -27,7 +27,7 @@ export function PlayerSidebar({ stats }: PlayerSidebarProps) {
       {/* Score Circle */}
       <div className="relative">
         <div className="w-24 h-24 rounded-full border-4 border-orange-glow/30 flex items-center justify-center relative">
-          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-orange-glow animate-spin" style={{ animationDuration: '8s' }} />
+          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-orange-glow border-b-orange-glow animate-spin" style={{ animationDuration: '60s' }} />
           <div className="text-center">
             <span className="text-xs text-muted-foreground block">SCORE</span>
             <span className="text-2xl font-bold text-foreground">{stats.score}</span>
