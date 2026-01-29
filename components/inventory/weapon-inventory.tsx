@@ -97,7 +97,7 @@ export function WeaponInventory() {
       <div 
         className="flex-1 flex items-center justify-center p-4"
         style={{ 
-          perspective: '1000px',
+          perspective: '800px',
         }}
       >
         {/* Main Panel - The base surface rotated in space */}
