@@ -97,7 +97,7 @@ export function WeaponInventory() {
       <div 
         className="flex-1 flex items-center justify-center p-4"
         style={{ 
-          perspective: '1800px',
+          perspective: '800px',
           perspectiveOrigin: '50% 45%',
         }}
       >
@@ -106,7 +106,7 @@ export function WeaponInventory() {
           className="relative"
           style={{
             transformStyle: 'preserve-3d',
-            transform: 'rotateY(-25deg) rotateX(2deg)',
+            transform: 'rotateY(-25deg)',
           }}
         >
           {/* Main Panel Surface (virtual backing) */}
