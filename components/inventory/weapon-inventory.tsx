@@ -142,7 +142,6 @@ export function WeaponInventory() {
               className="flex-1 flex flex-col min-w-[450px] max-w-[550px] panel-corners"
               style={{
                 transformStyle: 'preserve-3d',
-                transform: 'translateZ(10px)',
               }}
             >
               <div className="bg-card/80 backdrop-blur-sm border border-border/50 p-4 panel-glow flex flex-col h-[600px] panel-corners-inner">
