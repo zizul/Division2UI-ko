@@ -130,7 +130,6 @@ export function WeaponInventory() {
               className="panel-corners"
               style={{
                 transformStyle: 'preserve-3d',
-                transform: 'translateZ(0px)',
               }}
             >
               <div className="bg-card/80 backdrop-blur-sm border border-border/50 p-4 panel-glow h-[600px] panel-corners-inner">
