@@ -14,7 +14,7 @@ const playerStats = {
   score: 263,
   armor: 67468,
   health: 32951,
-  credits: 22186,
+  credits: 22185,
 };
 
 export function WeaponInventory() {
