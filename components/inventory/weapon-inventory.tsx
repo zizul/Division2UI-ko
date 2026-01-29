@@ -106,7 +106,7 @@ export function WeaponInventory() {
           className="relative"
           style={{
             transformStyle: 'preserve-3d',
-            transform: 'rotateY(-25deg)',
+            transform: 'rotateY(-25deg) rotateX(2deg)',
           }}
         >
           {/* Main Panel Surface (virtual backing) */}
