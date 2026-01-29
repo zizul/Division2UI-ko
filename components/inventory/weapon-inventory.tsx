@@ -97,8 +97,8 @@ export function WeaponInventory() {
       <div 
         className="flex-1 flex items-center justify-center p-4"
         style={{ 
-          perspective: '800px',
-          perspectiveOrigin: '50% 45%',
+          perspective: '2000px',
+          perspectiveOrigin: '30% 50%',
         }}
       >
         {/* Main Panel - The base surface rotated in space */}
@@ -213,7 +213,7 @@ export function WeaponInventory() {
           <div 
             className="relative z-10"
             style={{
-              perspective: '800px',
+              perspective: '1000px',
               perspectiveOrigin: '50% 100%',
             }}
           >
