@@ -97,8 +97,8 @@ export function WeaponInventory() {
       <div 
         className="flex-1 flex items-center justify-center p-4"
         style={{ 
-          perspective: '2200px',
-          perspectiveOrigin: '50% 50%',
+          perspective: '1800px',
+          perspectiveOrigin: '50% 45%',
         }}
       >
         {/* Main Panel - The base surface rotated in space */}
@@ -106,7 +106,7 @@ export function WeaponInventory() {
           className="relative"
           style={{
             transformStyle: 'preserve-3d',
-            transform: 'rotateY(-25deg) rotateX(2deg) scale(0.85)',
+            transform: 'rotateY(-25deg) rotateX(2deg)',
           }}
         >
           {/* Main Panel Surface (virtual backing) */}
