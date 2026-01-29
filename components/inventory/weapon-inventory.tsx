@@ -97,7 +97,7 @@ export function WeaponInventory() {
       <div 
         className="flex-1 flex items-center justify-center p-4"
         style={{ 
-          perspective: '1500px',
+          perspective: none,
           perspectiveOrigin: '50% 35%',
         }}
       >
