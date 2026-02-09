@@ -33,7 +33,7 @@ export function WeaponCard({ weapon, isSelected, onClick }: WeaponCardProps) {
     <button
       onClick={onClick}
       className={cn(
-        "w-full flex items-center gap-3 p-2 border transition-all duration-200 text-left group relative panel-corners panel-corners-inner",
+        "w-full flex items-center gap-3 p-2 border transition-all duration-75 text-left group relative panel-corners panel-corners-inner",
         isSelected 
           ? "bg-orange-glow border-orange-glow text-primary-foreground shadow-lg shadow-orange-glow/30" 
           : "bg-card/80 border-border/50 hover:border-orange-dim/50 hover:bg-card"
