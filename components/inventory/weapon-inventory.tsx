@@ -167,20 +167,21 @@ export function WeaponInventory() {
                   {/* Scrollable Weapon List */}
                   <div 
                     className="flex-1 overflow-y-auto pr-2 custom-scrollbar"
-                    style={{
-                      transformStyle: 'preserve-3d',
-                    }}
+                    style={{ transformStyle: 'preserve-3d' }}
                   >
-                    <div className="space-y-1" style={{ transformStyle: 'preserve-3d' }}>
+                    <div 
+                      className="flex flex-col gap-1"
+                      style={{ transformStyle: 'preserve-3d' }}
+                    >
                       {filteredAndSortedWeapons.map((weapon) => (
                         <div
                           key={weapon.id}
-                          className="transition-all duration-1000 ease-out"
+                          className="transition-transform duration-500 ease-out pointer-events-none panel-corners"
                           style={{
                             transformStyle: 'preserve-3d',
                             transform: selectedWeapon?.id === weapon.id 
-                              ? 'translateZ(50px) scale(1.03)' 
-                              : 'translateZ(0px) scale(1)',
+                              ? 'translateZ(50px)' 
+                              : 'translateZ(0px)',
                           }}
                         >
                           <WeaponCard
@@ -210,7 +211,7 @@ export function WeaponInventory() {
                     transform: 'translateZ(0px)',
                   }}
                 >
-                  <div className="bg-card/95 backdrop-blur-md border border-border/50 p-4 panel-glow h-[600px] overflow-y-auto overflow-x-hidden custom-scrollbar relative panel-corners-inner">
+                  <div className="bg-card/95 backdrop-blur-md border border-border/50 p-4 panel-glow h-[600px] overflow-y-auto overflow-x-hidden custom-scrollbar relative">
                     <WeaponDetail weapon={selectedWeapon} />
                   </div>
                 </div>
@@ -219,13 +220,13 @@ export function WeaponInventory() {
 
             {/* Action Bar - Bottom Row */}
             <div 
-              className="flex gap-4"
+              className="flex gap-4 panel-corners"
               style={{
                 transformStyle: 'preserve-3d',
                 transform: 'translateZ(0px)',
               }}
             >
-              <div className="bg-card/90 backdrop-blur-md border border-border/50 panel-glow flex-1">
+              <div className="bg-card/90 backdrop-blur-md border border-border/50 panel-glow flex-1 pl-4 panel-corners-inner">
                 <ActionBar
                   onEquip={handleEquip}
                   onDeconstruct={handleDeconstruct}
