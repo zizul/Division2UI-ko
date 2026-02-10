@@ -147,8 +147,8 @@
 .panel-corners::after {
   content: '';
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 2px;
+  height: 2px;
   background: rgba(200, 200, 200, 0.5);
   pointer-events: none;
   z-index: 10;
@@ -173,20 +173,20 @@
 .panel-corners-inner::after {
   content: '';
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 2px;
+  height: 2px;
   background: rgba(200, 200, 200, 0.5);
   pointer-events: none;
   z-index: 10;
 }
 
 .panel-corners-inner::before {
-  bottom: -1px;
+  bottom: 0px;
   left: -1px;
 }
 
 .panel-corners-inner::after {
-  bottom: -1px;
+  bottom: 0px;
   right: -1px;
 }
 

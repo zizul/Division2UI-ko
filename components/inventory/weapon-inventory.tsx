@@ -170,7 +170,7 @@ export function WeaponInventory() {
                     style={{ transformStyle: 'preserve-3d' }}
                   >
                     <div 
-                      className="flex flex-col gap-1"
+                      className="flex flex-col gap-2"
                       style={{ transformStyle: 'preserve-3d' }}
                     >
                       {filteredAndSortedWeapons.map((weapon) => (
@@ -211,7 +211,7 @@ export function WeaponInventory() {
                     transform: 'translateZ(0px)',
                   }}
                 >
-                  <div className="bg-card/95 backdrop-blur-md border border-border/50 p-4 panel-glow h-[600px] overflow-y-auto overflow-x-hidden custom-scrollbar relative">
+                  <div className="bg-card/95 backdrop-blur-md border border-border/50 p-4 panel-glow h-[600px] overflow-y-auto overflow-x-hidden custom-scrollbar relative panel-corners-inner">
                     <WeaponDetail weapon={selectedWeapon} />
                   </div>
                 </div>
