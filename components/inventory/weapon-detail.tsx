@@ -16,7 +16,7 @@ interface WeaponDetailProps {
 
 export function WeaponDetail({ weapon }: WeaponDetailProps) {
   return (
-    <div className="w-80 flex-shrink-0 relative z-10">
+    <div className="w-80 flex-shrink-0 relative z-10 h-full overflow-y-auto overflow-x-hidden custom-scrollbar">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>

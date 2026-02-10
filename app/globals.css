@@ -155,13 +155,13 @@
 }
 
 .panel-corners::before {
-  top: -1px;
-  left: -1px;
+  top: 0px;
+  left: 0px;
 }
 
 .panel-corners::after {
-  top: -1px;
-  right: -1px;
+  top: 0px;
+  right: 0px;
 }
 
 /* Bottom corners using pseudo-elements on inner element */
@@ -181,12 +181,12 @@
 }
 
 .panel-corners-inner::before {
-  bottom: 0px;
+  bottom: -1px;
   left: -1px;
 }
 
 .panel-corners-inner::after {
-  bottom: 0px;
+  bottom: -1px;
   right: -1px;
 }
 
