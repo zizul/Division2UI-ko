@@ -2,7 +2,7 @@
 
 import { Shield, Heart, Award } from "lucide-react";
 
-interface PlayerStats {
+export interface PlayerStats {
   username: string;
   title: string;
   score: number;

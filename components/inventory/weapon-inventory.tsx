@@ -158,10 +158,26 @@ export function WeaponInventory() {
                     inventoryCount={weapons.length}
                     maxInventory={100}
                     selectedCategory={selectedCategory}
-                    onCategoryChange={setSelectedCategory}
+                    onCategoryChange={(cat) => setSelectedCategory(cat as WeaponCategory | "All")}
                     sortBy={sortBy}
-                    onSortChange={setSortBy}
+                    onSortChange={(s) => setSortBy(s as SortOption)}
                     slotLabel="Primary Weapon"
+                    categories={[
+                      { value: "All", label: "All" },
+                      { value: "Assault Rifle", label: "Assault Rifle" },
+                      { value: "SMG", label: "SMG" },
+                      { value: "Rifle", label: "Rifle" },
+                      { value: "LMG", label: "LMG" },
+                      { value: "Shotgun", label: "Shotgun" },
+                      { value: "Pistol", label: "Pistol" },
+                      { value: "Marksman Rifle", label: "Marksman Rifle" },
+                    ]}
+                    sortOptions={[
+                      { value: "score", label: "Score" },
+                      { value: "damage", label: "Damage" },
+                      { value: "rpm", label: "RPM" },
+                      { value: "name", label: "Name" },
+                    ]}
                   />
 
                   {/* Scrollable Weapon List */}
@@ -180,7 +196,7 @@ export function WeaponInventory() {
                           style={{
                             transformStyle: 'preserve-3d',
                             transform: selectedWeapon?.id === weapon.id 
-                              ? 'translateZ(50px)' 
+                              ? 'translateZ(150px)' 
                               : 'translateZ(0px)',
                           }}
                         >

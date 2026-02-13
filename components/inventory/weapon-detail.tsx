@@ -84,7 +84,7 @@ export function WeaponDetail({ weapon }: WeaponDetailProps) {
       </div>
 
       {/* Weapon Image */}
-      <div className="relative h-32 bg-secondary/30 border border-border/50 mb-6">
+      <div className="relative h-32 bg-transparent border border-border/50 mb-6">
         <Image
           src={weapon.image || "/placeholder.svg"}
           alt={weapon.name}
@@ -117,7 +117,7 @@ export function WeaponDetail({ weapon }: WeaponDetailProps) {
           {["Optic", "Magazine", "Underbarrel", "Muzzle"].map((slot) => (
             <div 
               key={slot}
-              className="h-8 bg-secondary/50 border border-border/50 flex items-center justify-center text-xs text-muted-foreground"
+              className="h-8 bg-transparent border border-border/50 flex items-center justify-center text-xs text-muted-foreground"
             >
               {slot}
             </div>
