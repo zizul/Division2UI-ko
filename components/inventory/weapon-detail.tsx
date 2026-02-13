@@ -16,7 +16,7 @@ interface WeaponDetailProps {
 
 export function WeaponDetail({ weapon }: WeaponDetailProps) {
   return (
-    <div className="max-w-80 w-full flex-shrink-0 relative z-10">
+    <div className="w-80 flex-shrink-0 relative z-10 h-full overflow-y-auto overflow-x-hidden custom-scrollbar">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -84,7 +84,7 @@ export function WeaponDetail({ weapon }: WeaponDetailProps) {
       </div>
 
       {/* Weapon Image */}
-      <div className="relative h-32 bg-secondary/30 border border-border/50 mb-6">
+      <div className="relative h-32 bg-transparent border border-border/50 mb-6">
         <Image
           src={weapon.image || "/placeholder.svg"}
           alt={weapon.name}
@@ -117,7 +117,7 @@ export function WeaponDetail({ weapon }: WeaponDetailProps) {
           {["Optic", "Magazine", "Underbarrel", "Muzzle"].map((slot) => (
             <div 
               key={slot}
-              className="h-8 bg-secondary/50 border border-border/50 flex items-center justify-center text-xs text-muted-foreground"
+              className="h-8 bg-transparent border border-border/50 flex items-center justify-center text-xs text-muted-foreground"
             >
               {slot}
             </div>

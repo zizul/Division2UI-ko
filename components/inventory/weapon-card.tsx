@@ -15,28 +15,15 @@ interface WeaponCardProps {
   onClick: () => void;
 }
 
-function StatChange({ value }: { value?: number }) {
-  if (!value) return null;
-  const isPositive = value > 0;
-  return (
-    <span className={cn(
-      "text-[10px] ml-0.5",
-      isPositive ? "text-green-stat" : "text-red-stat"
-    )}>
-      {isPositive ? "↑" : "↓"}
-    </span>
-  );
-}
-
 export function WeaponCard({ weapon, isSelected, onClick }: WeaponCardProps) {
   return (
     <button
       onClick={onClick}
       className={cn(
-        "w-full flex items-center gap-3 p-2 border transition-all duration-200 text-left group relative panel-corners panel-corners-inner",
+        "w-full flex flex-col p-2 border transition-colors duration-75 text-left group relative pointer-events-auto panel-corners-inner",
         isSelected 
           ? "bg-orange-glow border-orange-glow text-primary-foreground shadow-lg shadow-orange-glow/30" 
-          : "bg-card/80 border-border/50 hover:border-orange-dim/50 hover:bg-card"
+          : "bg-transparent border-border/50 hover:border-orange-dim/50"
       )}
       style={{
         boxShadow: isSelected 
@@ -44,101 +31,82 @@ export function WeaponCard({ weapon, isSelected, onClick }: WeaponCardProps) {
           : undefined,
       }}
     >
-      {/* Weapon Image */}
-      <div className={cn(
-        "w-24 h-14 relative flex-shrink-0 overflow-hidden",
-        isSelected ? "bg-orange-bright/20" : "bg-secondary/50"
-      )}>
-        <Image
-          src={weapon.image || "/placeholder.svg"}
-          alt={weapon.name}
-          fill
-          className="object-contain p-1"
-        />
-      </div>
-
-      {/* Weapon Info */}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 mb-1">
-          <span className={cn(
-            "text-xs",
-            isSelected ? "text-primary-foreground/70" : "text-muted-foreground"
-          )}>
-            {categoryIcons[weapon.category]}
-          </span>
-          <span className={cn(
-            "text-sm font-medium truncate",
-            isSelected ? "text-primary-foreground" : rarityColors[weapon.rarity]
-          )}>
-            {weapon.name}
-          </span>
+      {/* Top: Image + Score */}
+      <div className="flex items-center gap-2 mb-1.5">
+        <div className={cn(
+          "w-16 h-10 relative flex-shrink-0 overflow-hidden",
+          isSelected ? "bg-orange-bright/20" : "bg-transparent border border-border/30"
+        )}>
+          <Image
+            src={weapon.image || "/placeholder.svg"}
+            alt={weapon.name}
+            fill
+            className="object-contain p-0.5"
+          />
         </div>
-        
-        {/* Stats Row */}
-        <div className="flex items-center gap-4 text-xs">
-          <div>
-            <span className={cn(
-              "opacity-60",
-              isSelected ? "text-primary-foreground" : "text-muted-foreground"
-            )}>DMG</span>
-            <div className="flex items-center">
-              <span className={cn(
-                "font-mono font-semibold",
-                isSelected 
-                  ? "text-primary-foreground" 
-                  : weapon.damageChange && weapon.damageChange > 0 
-                    ? "text-green-stat" 
-                    : weapon.damageChange && weapon.damageChange < 0 
-                      ? "text-red-stat" 
-                      : "text-foreground"
-              )}>
-                {formatDamage(weapon.damage)}
-              </span>
-              {!isSelected && <StatChange value={weapon.damageChange} />}
-            </div>
-          </div>
-          
-          <div>
-            <span className={cn(
-              "opacity-60",
-              isSelected ? "text-primary-foreground" : "text-muted-foreground"
-            )}>RPM</span>
-            <div className="flex items-center">
-              <span className={cn(
-                "font-mono",
-                isSelected ? "text-primary-foreground" : "text-foreground"
-              )}>
-                {weapon.rpm}
-              </span>
-              {!isSelected && <StatChange value={weapon.rpmChange} />}
-            </div>
-          </div>
-          
-          <div>
-            <span className={cn(
-              "opacity-60",
-              isSelected ? "text-primary-foreground" : "text-muted-foreground"
-            )}>MAG</span>
-            <div className="flex items-center">
-              <span className={cn(
-                "font-mono",
-                isSelected ? "text-primary-foreground" : "text-foreground"
-              )}>
-                {weapon.magazine}
-              </span>
-              {!isSelected && <StatChange value={weapon.magChange} />}
-            </div>
-          </div>
+        <div className={cn(
+          "ml-auto text-right flex-shrink-0",
+          isSelected ? "text-primary-foreground" : "text-foreground"
+        )}>
+          <span className="text-[9px] opacity-60 block leading-none">SCORE</span>
+          <span className="text-lg font-bold leading-tight">{weapon.score}</span>
         </div>
       </div>
 
-      {/* Score */}
-      <div className={cn(
-        "text-right flex-shrink-0 pr-2",
-        isSelected ? "text-primary-foreground" : "text-foreground"
-      )}>
-        <span className="text-[10px] opacity-60 block">SCORE</span>
-        <span className="text-xl font-bold">{weapon.score}</span>
+      {/* Name Row */}
+      <div className="flex items-center gap-1.5 mb-1">
+        <span className={cn(
+          "text-[11px]",
+          isSelected ? "text-primary-foreground/70" : "text-muted-foreground"
+        )}>
+          {categoryIcons[weapon.category]}
+        </span>
+        <span className={cn(
+          "text-xs font-medium truncate",
+          isSelected ? "text-primary-foreground" : rarityColors[weapon.rarity]
+        )}>
+          {weapon.name}
+        </span>
+      </div>
+
+      {/* Stats Row */}
+      <div className="flex items-center gap-3 text-[10px]">
+        <div>
+          <span className={cn(
+            "opacity-60",
+            isSelected ? "text-primary-foreground" : "text-muted-foreground"
+          )}>DMG </span>
+          <span className={cn(
+            "font-mono font-semibold",
+            isSelected ? "text-primary-foreground" : "text-foreground"
+          )}>
+            {formatDamage(weapon.damage)}
+          </span>
+        </div>
+        <div>
+          <span className={cn(
+            "opacity-60",
+            isSelected ? "text-primary-foreground" : "text-muted-foreground"
+          )}>RPM </span>
+          <span className={cn(
+            "font-mono",
+            isSelected ? "text-primary-foreground" : "text-foreground"
+          )}>
+            {weapon.rpm}
+          </span>
+        </div>
+        <div>
+          <span className={cn(
+            "opacity-60",
+            isSelected ? "text-primary-foreground" : "text-muted-foreground"
+          )}>MAG </span>
+          <span className={cn(
+            "font-mono",
+            isSelected ? "text-primary-foreground" : "text-foreground"
+          )}>
+            {weapon.magazine}
+          </span>
+        </div>
       </div>
     </button>
   );

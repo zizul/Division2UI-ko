@@ -120,82 +120,19 @@ export function WeaponInventory() {
           
           {/* 3D Panel Group on main panel */}
           <div 
-            className="flex gap-4 items-stretch"
+            className="flex flex-col gap-4"
             style={{
               transformStyle: 'preserve-3d',
             }}
           >
-            {/* Player Sidebar */}
+            {/* Top Row: Three Panels */}
             <div 
-              className="panel-corners"
+              className="flex gap-4 items-stretch"
               style={{
                 transformStyle: 'preserve-3d',
-                transform: 'translateZ(0px)',
               }}
             >
-              <div className="bg-card/80 backdrop-blur-sm border border-border/50 p-4 panel-glow h-[600px] panel-corners-inner">
-                <PlayerSidebar stats={playerStats} />
-              </div>
-            </div>
-
-            {/* Weapon List - Center Panel */}
-            <div 
-              className="flex-1 flex flex-col min-w-[450px] max-w-[550px] panel-corners"
-              style={{
-                transformStyle: 'preserve-3d',
-                transform: 'translateZ(10px)',
-              }}
-            >
-              <div className="bg-card/80 backdrop-blur-sm border border-border/50 p-4 panel-glow flex flex-col h-[600px] panel-corners-inner">
-                <InventoryHeader
-                  inventoryCount={weapons.length}
-                  maxInventory={100}
-                  selectedCategory={selectedCategory}
-                  onCategoryChange={setSelectedCategory}
-                  sortBy={sortBy}
-                  onSortChange={setSortBy}
-                  slotLabel="Primary Weapon"
-                />
-
-                {/* Scrollable Weapon List */}
-                <div 
-                  className="flex-1 overflow-y-auto pr-2 custom-scrollbar"
-                  style={{
-                    transformStyle: 'preserve-3d',
-                  }}
-                >
-                  <div className="space-y-1" style={{ transformStyle: 'preserve-3d' }}>
-                    {filteredAndSortedWeapons.map((weapon) => (
-                      <div
-                        key={weapon.id}
-                        className="transition-all duration-1000 ease-out"
-                        style={{
-                          transformStyle: 'preserve-3d',
-                          transform: selectedWeapon?.id === weapon.id 
-                            ? 'translateZ(50px) scale(1.03)' 
-                            : 'translateZ(0px) scale(1)',
-                        }}
-                      >
-                        <WeaponCard
-                          weapon={weapon}
-                          isSelected={selectedWeapon?.id === weapon.id}
-                          onClick={() => setSelectedWeapon(weapon)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-
-                  {filteredAndSortedWeapons.length === 0 && (
-                    <div className="flex items-center justify-center h-40 text-muted-foreground">
-                      No weapons found in this category
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Weapon Detail Panel */}
-            {selectedWeapon && (
+              {/* Player Sidebar */}
               <div 
                 className="panel-corners"
                 style={{
@@ -203,34 +140,116 @@ export function WeaponInventory() {
                   transform: 'translateZ(0px)',
                 }}
               >
-                <div className="bg-card/95 backdrop-blur-md border border-border/50 p-4 panel-glow h-[600px] overflow-y-auto overflow-x-hidden custom-scrollbar relative panel-corners-inner">
-                  <WeaponDetail weapon={selectedWeapon} />
+                <div className="bg-card/80 backdrop-blur-sm border border-border/50 p-4 panel-glow h-[600px] panel-corners-inner">
+                  <PlayerSidebar stats={playerStats} />
                 </div>
               </div>
-            )}
-          </div>
-          {/* Action Bar - Fixed at bottom with 3D effect */}
-          <div 
-            className="relative z-10"
-            style={{
-              perspective: '1000px',
-              perspectiveOrigin: '50% 100%',
-            }}
-          >
+
+              {/* Weapon List - Center Panel */}
+              <div 
+                className="flex-1 flex flex-col min-w-[450px] max-w-[550px] panel-corners"
+                style={{
+                  transformStyle: 'preserve-3d',
+                  transform: 'translateZ(0px)',
+                }}
+              >
+                <div className="bg-card/80 backdrop-blur-sm border border-border/50 p-4 panel-glow flex flex-col h-[600px] panel-corners-inner">
+                  <InventoryHeader
+                    inventoryCount={weapons.length}
+                    maxInventory={100}
+                    selectedCategory={selectedCategory}
+                    onCategoryChange={(cat) => setSelectedCategory(cat as WeaponCategory | "All")}
+                    sortBy={sortBy}
+                    onSortChange={(s) => setSortBy(s as SortOption)}
+                    slotLabel="Primary Weapon"
+                    categories={[
+                      { value: "All", label: "All" },
+                      { value: "Assault Rifle", label: "Assault Rifle" },
+                      { value: "SMG", label: "SMG" },
+                      { value: "Rifle", label: "Rifle" },
+                      { value: "LMG", label: "LMG" },
+                      { value: "Shotgun", label: "Shotgun" },
+                      { value: "Pistol", label: "Pistol" },
+                      { value: "Marksman Rifle", label: "Marksman Rifle" },
+                    ]}
+                    sortOptions={[
+                      { value: "score", label: "Score" },
+                      { value: "damage", label: "Damage" },
+                      { value: "rpm", label: "RPM" },
+                      { value: "name", label: "Name" },
+                    ]}
+                  />
+
+                  {/* Scrollable Weapon List */}
+                  <div 
+                    className="flex-1 overflow-y-auto pr-2 custom-scrollbar"
+                    style={{ transformStyle: 'preserve-3d' }}
+                  >
+                    <div 
+                      className="flex flex-col gap-2"
+                      style={{ transformStyle: 'preserve-3d' }}
+                    >
+                      {filteredAndSortedWeapons.map((weapon) => (
+                        <div
+                          key={weapon.id}
+                          className="transition-transform duration-500 ease-out pointer-events-none panel-corners"
+                          style={{
+                            transformStyle: 'preserve-3d',
+                            transform: selectedWeapon?.id === weapon.id 
+                              ? 'translateZ(150px)' 
+                              : 'translateZ(0px)',
+                          }}
+                        >
+                          <WeaponCard
+                            weapon={weapon}
+                            isSelected={selectedWeapon?.id === weapon.id}
+                            onClick={() => setSelectedWeapon(weapon)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    {filteredAndSortedWeapons.length === 0 && (
+                      <div className="flex items-center justify-center h-40 text-muted-foreground">
+                        No weapons found in this category
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Weapon Detail Panel */}
+              {selectedWeapon && (
+                <div 
+                  className="panel-corners"
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    transform: 'translateZ(0px)',
+                  }}
+                >
+                  <div className="bg-card/95 backdrop-blur-md border border-border/50 p-4 panel-glow h-[600px] relative panel-corners-inner">
+                    <WeaponDetail weapon={selectedWeapon} />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Action Bar - Bottom Row */}
             <div 
-              className="bg-card/90 backdrop-blur-md border-t border-border/30 panel-glow"
+              className="flex gap-4 panel-corners"
               style={{
                 transformStyle: 'preserve-3d',
-                transform: 'rotateX(-8deg) translateY(-5px) translateZ(30px)',
-                transformOrigin: 'center bottom',
+                transform: 'translateZ(0px)',
               }}
             >
-              <ActionBar
-                onEquip={handleEquip}
-                onDeconstruct={handleDeconstruct}
-                onBack={handleBack}
-                isEquipped={equippedWeaponId === selectedWeapon?.id}
-              />
+              <div className="bg-card/90 backdrop-blur-md border border-border/50 panel-glow flex-1 pl-4 panel-corners-inner">
+                <ActionBar
+                  onEquip={handleEquip}
+                  onDeconstruct={handleDeconstruct}
+                  onBack={handleBack}
+                  isEquipped={equippedWeaponId === selectedWeapon?.id}
+                />
+              </div>
             </div>
           </div>
         </div>
