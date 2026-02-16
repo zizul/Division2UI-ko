@@ -1,19 +1,10 @@
 export type CoreAttribute = "Armor" | "Damage" | "Skill";
-export type BrandSetSortOption = "core" | "brand" | "bonusValue" | "namedCount";
+export type BrandSetSortOption = "brand" | "bonus1" | "bonus2" | "bonus3";
 
 /** Extract the first numeric value from a bonus string, e.g. "30% Health" → 30 */
 export function extractBonusValue(bonus: string): number {
   const match = bonus.match(/([\d.]+)/);
   return match ? parseFloat(match[1]) : 0;
-}
-
-/** Count how many named gear items a brand set has */
-export function namedGearCount(bs: BrandSet): number {
-  let count = 0;
-  if (bs.namedChestpiece) count++;
-  if (bs.namedBackpack) count++;
-  if (bs.otherNamedGear) count++;
-  return count;
 }
 
 export interface BrandSet {
