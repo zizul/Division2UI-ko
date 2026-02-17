@@ -9,7 +9,6 @@ import {
   type BrandSet,
   type BrandSetSortOption,
   extractBonusValue,
-  namedGearCount,
 } from "@/lib/brandset-data";
 
 const playerStats = {
@@ -29,34 +28,26 @@ const brandSetCategories = [
 ];
 
 const brandSetSortOptions = [
-  { value: "core", label: "Core Attr" },
   { value: "brand", label: "Brand A-Z" },
-  { value: "bonusValue", label: "1pc Value" },
-  { value: "namedCount", label: "Named Gear" },
+  { value: "bonus1", label: "1pc Bonus" },
+  { value: "bonus2", label: "2pc Bonus" },
+  { value: "bonus3", label: "3pc Bonus" },
 ];
 
 function brandSetFilterFn(brandSet: BrandSet, category: string): boolean {
   return brandSet.coreAttribute === category;
 }
 
-const coreOrder: Record<string, number> = { Damage: 0, Armor: 1, Skill: 2 };
-
 function brandSetSortFn(a: BrandSet, b: BrandSet, sortBy: string): number {
   switch (sortBy as BrandSetSortOption) {
-    case "core":
-      // Group by core attribute, then alphabetical within group
-      const coreA = coreOrder[a.coreAttribute] ?? 9;
-      const coreB = coreOrder[b.coreAttribute] ?? 9;
-      return coreA !== coreB ? coreA - coreB : a.brand.localeCompare(b.brand);
     case "brand":
       return a.brand.localeCompare(b.brand);
-    case "bonusValue":
-      // Highest 1pc bonus value first
+    case "bonus1":
       return extractBonusValue(b.bonus1Piece) - extractBonusValue(a.bonus1Piece);
-    case "namedCount":
-      // Most named items first, then by brand
-      const diff = namedGearCount(b) - namedGearCount(a);
-      return diff !== 0 ? diff : a.brand.localeCompare(b.brand);
+    case "bonus2":
+      return extractBonusValue(b.bonus2Piece) - extractBonusValue(a.bonus2Piece);
+    case "bonus3":
+      return extractBonusValue(b.bonus3Piece) - extractBonusValue(a.bonus3Piece);
     default:
       return 0;
   }
@@ -83,7 +74,7 @@ export default function BrandSetsPage() {
       emptyMessage="No brand sets found in this category"
       defaultSelectedIndex={0}
       defaultCategory="All"
-      defaultSortBy="core"
+      defaultSortBy="brand"
     />
   );
 }
