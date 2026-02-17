@@ -148,7 +148,7 @@ export function ThreePanelInventory<T extends { id: string }>({
           className="relative"
           style={{
             transformStyle: "preserve-3d",
-            transform: "rotateY(-25deg) scale(1.2)",
+            transform: "rotateY(-25deg) scale(1.14)",
           }}
         >
           {/* Main Panel Surface (virtual backing) */}
@@ -221,12 +221,12 @@ export function ThreePanelInventory<T extends { id: string }>({
                       {filteredAndSortedObjects.map((obj) => (
                         <div
                           key={obj.id}
-                          className="transition-transform duration-500 ease-out pointer-events-none panel-corners"
+                          className="transition-transform duration-500 ease-in-out pointer-events-none panel-corners"
                           style={{
                             transformStyle: "preserve-3d",
                             transform:
                               selectedObject?.id === obj.id
-                                ? "translateZ(150px)"
+                                ? "translateZ(100px)"
                                 : "translateZ(0px)",
                           }}
                         >
