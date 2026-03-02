@@ -25,15 +25,6 @@ const coreGradients: Record<CoreAttribute, string> = {
     "linear-gradient(to right, rgba(60,150,80,0.25) 0%, rgba(22,22,28,0.75) 100%)",
 };
 
-const coreGradientSelected: Record<CoreAttribute, string> = {
-  Armor:
-    "linear-gradient(to right, rgba(60,90,180,0.45) 0%, rgba(25,22,18,0.85) 100%)",
-  Damage:
-    "linear-gradient(to right, rgba(180,60,50,0.45) 0%, rgba(25,22,18,0.85) 100%)",
-  Skill:
-    "linear-gradient(to right, rgba(60,150,80,0.45) 0%, rgba(25,22,18,0.85) 100%)",
-};
-
 function CoreIcon({
   attribute,
   className,
@@ -56,83 +47,79 @@ export function BrandSetCard({
   isSelected,
   onClick,
 }: BrandSetCardProps) {
+  const sel = isSelected;
+
   return (
     <button
       onClick={onClick}
       className={cn(
-        "relative w-full h-[88px] overflow-hidden border transition-all duration-150 text-left pointer-events-auto",
-        isSelected
-          ? "border-orange-glow"
-          : "border-border/60 hover:border-border/80"
+        "relative w-full h-[88px] overflow-hidden border text-left pointer-events-auto",
+        "border-border/60 hover:border-border/80"
       )}
-      style={{
-        boxShadow: isSelected
-          ? "0 0 20px rgba(255, 150, 50, 0.4), inset 0 0 15px rgba(255, 150, 50, 0.1)"
-          : undefined,
-      }}
     >
       {/* Left core attribute color bar */}
       <div
         className={cn(
-          "absolute left-0 top-0 bottom-0 w-[3px] z-10",
+          "absolute left-0 top-0 bottom-0 w-[6px] z-10",
           coreBarColors[brandSet.coreAttribute]
         )}
       />
 
-      {/* Background gradient - tinted by core attribute */}
+      {/* Background: orange-glow when selected (delayed), core gradient otherwise */}
       <div
         className="absolute inset-0"
         style={{
-          background: isSelected
-            ? coreGradientSelected[brandSet.coreAttribute]
+          background: sel
+            ? "var(--orange-glow)"
             : coreGradients[brandSet.coreAttribute],
+          transition: "none",
         }}
       />
 
-      {/* Center icon placeholder (like weapon image) */}
+      {/* Center icon placeholder */}
       <div className="absolute inset-0 flex items-center justify-center">
         <CoreIcon
           attribute={brandSet.coreAttribute}
-          className="w-10 h-10 opacity-15"
+          className={cn("w-10 h-10", sel ? "opacity-10" : "opacity-15")}
         />
       </div>
 
       {/* Brand name - top left */}
       <div
         className="absolute top-1.5 left-2.5 z-10 max-w-[60%] truncate"
-        style={{ textShadow: "0 1px 4px rgba(0,0,0,0.9)" }}
+        style={{ textShadow: sel ? "none" : "0 1px 4px rgba(0,0,0,0.9)" }}
       >
-        <span className="text-white/80 text-[11px] font-medium">
+        <span className={cn("text-[11px] font-medium", sel ? "text-black" : "text-white/80")}>
           {brandSet.brand}
         </span>
       </div>
 
-      {/* Bonuses - bottom left (like weapon stats) */}
+      {/* Bonuses - bottom left */}
       <div
         className="absolute bottom-1.5 left-2.5 flex flex-col gap-px z-10"
-        style={{ textShadow: "0 1px 4px rgba(0,0,0,0.9)" }}
+        style={{ textShadow: sel ? "none" : "0 1px 4px rgba(0,0,0,0.9)" }}
       >
         <div className="flex items-center gap-1">
-          <span className="text-orange-glow text-[7px] font-bold leading-none">
+          <span className={cn("text-[7px] font-bold leading-none", sel ? "text-black/70" : "text-orange-glow")}>
             1
           </span>
-          <span className="text-white/90 text-[10px] font-mono leading-tight truncate max-w-[130px]">
+          <span className={cn("text-[10px] font-mono leading-tight truncate max-w-[130px]", sel ? "text-black" : "text-white/90")}>
             {brandSet.bonus1Piece}
           </span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="text-orange-dim text-[7px] font-bold leading-none">
+          <span className={cn("text-[7px] font-bold leading-none", sel ? "text-black/70" : "text-orange-dim")}>
             2
           </span>
-          <span className="text-white/70 text-[10px] font-mono leading-tight truncate max-w-[130px]">
+          <span className={cn("text-[10px] font-mono leading-tight truncate max-w-[130px]", sel ? "text-black" : "text-white/70")}>
             {brandSet.bonus2Piece}
           </span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="text-orange-dim/70 text-[7px] font-bold leading-none">
+          <span className={cn("text-[7px] font-bold leading-none", sel ? "text-black/70" : "text-orange-dim/70")}>
             3
           </span>
-          <span className="text-white/60 text-[10px] font-mono leading-tight truncate max-w-[130px]">
+          <span className={cn("text-[10px] font-mono leading-tight truncate max-w-[130px]", sel ? "text-black" : "text-white/60")}>
             {brandSet.bonus3Piece}
           </span>
         </div>
@@ -141,10 +128,13 @@ export function BrandSetCard({
       {/* Core attribute - top right */}
       <div
         className="absolute top-1.5 right-2 flex items-center gap-1 z-10"
-        style={{ textShadow: "0 1px 4px rgba(0,0,0,0.9)" }}
+        style={{ textShadow: sel ? "none" : "0 1px 4px rgba(0,0,0,0.9)" }}
       >
-        <CoreIcon attribute={brandSet.coreAttribute} className="w-3 h-3" />
-        <span className="text-white/80 text-[10px] font-bold">
+        <CoreIcon
+          attribute={brandSet.coreAttribute}
+          className={cn("w-3 h-3", sel && "text-black/70")}
+        />
+        <span className={cn("text-[10px] font-bold", sel ? "text-black" : "text-white/80")}>
           {brandSet.coreAttribute}
         </span>
       </div>

@@ -211,30 +211,35 @@ export function ThreePanelInventory<T extends { id: string }>({
 
                   {/* Scrollable Object List */}
                   <div
-                    className="flex-1 overflow-y-auto pr-2 custom-scrollbar"
-                    style={{ transformStyle: "preserve-3d" }}
+                    className="flex-1 overflow-y-auto overflow-x-visible custom-scrollbar"
+                    style={{ padding: "8px", paddingRight: "14px" }}
                   >
                     <div
-                      className="grid grid-cols-2 gap-2"
-                      style={{ transformStyle: "preserve-3d" }}
+                      className="grid grid-cols-2 gap-3"
                     >
                       {filteredAndSortedObjects.map((obj) => (
                         <div
                           key={obj.id}
-                          className="transition-transform duration-500 ease-in-out pointer-events-none panel-corners"
                           style={{
-                            transformStyle: "preserve-3d",
-                            transform:
-                              selectedObject?.id === obj.id
-                                ? "translateZ(100px)"
-                                : "translateZ(0px)",
+                            perspective: "600px",
                           }}
                         >
+                          <div
+                            className="pointer-events-none panel-corners"
+                            style={{
+                              transform:
+                                selectedObject?.id === obj.id
+                                  ? "translateZ(10px)"
+                                  : "translateZ(0px)",
+                              transition: "transform 100ms ease-in-out",
+                            }}
+                          >
                           {renderCard(
                             obj,
                             selectedObject?.id === obj.id,
                             () => setSelectedObject(obj)
                           )}
+                          </div>
                         </div>
                       ))}
                     </div>

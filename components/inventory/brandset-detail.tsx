@@ -25,7 +25,7 @@ function CoreAttributeIcon({ attribute, className }: { attribute: BrandSet["core
 
 export function BrandSetDetail({ brandSet }: BrandSetDetailProps) {
   return (
-    <div className="w-80 flex-shrink-0 relative z-10 h-full overflow-y-auto overflow-x-hidden custom-scrollbar">
+    <div className="w-80 flex-shrink-0 relative z-10 h-full overflow-y-auto overflow-x-hidden custom-scrollbar pr-3">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
