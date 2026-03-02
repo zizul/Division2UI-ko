@@ -148,7 +148,7 @@ export function ThreePanelInventory<T extends { id: string }>({
           className="relative"
           style={{
             transformStyle: "preserve-3d",
-            transform: "rotateY(-25deg) scale(1.14)",
+            transform: "rotateY(-25deg) scale(1.0)",
           }}
         >
           {/* Main Panel Surface (virtual backing) */}
@@ -211,21 +211,16 @@ export function ThreePanelInventory<T extends { id: string }>({
 
                   {/* Scrollable Object List */}
                   <div
-                    className="flex-1 overflow-y-auto overflow-x-visible custom-scrollbar"
+                    className="flex-1 overflow-y-auto custom-scrollbar"
                     style={{ padding: "8px", paddingRight: "14px" }}
                   >
-                    <div
-                      className="grid grid-cols-2 gap-3"
-                    >
+                    <div className="grid grid-cols-2 gap-3">
                       {filteredAndSortedObjects.map((obj) => (
                         <div
                           key={obj.id}
-                          style={{
-                            perspective: "600px",
-                          }}
+                          style={{ perspective: "600px" }}
                         >
                           <div
-                            className="pointer-events-none panel-corners"
                             style={{
                               transform:
                                 selectedObject?.id === obj.id
@@ -234,11 +229,11 @@ export function ThreePanelInventory<T extends { id: string }>({
                               transition: "transform 100ms ease-in-out",
                             }}
                           >
-                          {renderCard(
-                            obj,
-                            selectedObject?.id === obj.id,
-                            () => setSelectedObject(obj)
-                          )}
+                            {renderCard(
+                              obj,
+                              selectedObject?.id === obj.id,
+                              () => setSelectedObject(obj)
+                            )}
                           </div>
                         </div>
                       ))}
