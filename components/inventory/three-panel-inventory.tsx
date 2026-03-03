@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, type ReactNode } from "react";
+import { useState, useMemo, useCallback, useEffect, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { PlayerSidebar, type PlayerStats } from "./player-sidebar";
 import { ActionBar } from "./action-bar";
@@ -54,6 +54,33 @@ export function ThreePanelInventory<T extends { id: string }>({
   defaultCategory,
   defaultSortBy,
 }: ThreePanelInventoryProps<T>) {
+  useEffect(() => {
+    const handleMouseClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      const textSnippet = target.textContent?.trim().replace(/\s+/g, " ").slice(0, 80);
+      const domPath = target
+        .closest("[id]")
+        ?.id
+        ? `#${target.closest("[id]")?.id}`
+        : target.tagName.toLowerCase();
+
+      console.log("[DOM Click]", {
+        tag: target.tagName.toLowerCase(),
+        id: target.id || null,
+        className: target.className || null,
+        text: textSnippet || null,
+        pathHint: domPath,
+      });
+    };
+
+    document.addEventListener("click", handleMouseClick);
+    return () => {
+      document.removeEventListener("click", handleMouseClick);
+    };
+  }, []);
+
   // Internal state for selection, category, and sort
   const [selectedObject, setSelectedObject] = useState<T | null>(
     objects[defaultSelectedIndex] ?? null
@@ -148,14 +175,15 @@ export function ThreePanelInventory<T extends { id: string }>({
           className="relative"
           style={{
             transformStyle: "preserve-3d",
-            transform: "rotateY(-25deg) scale(1.0)",
+            transform: "rotateY(-15deg) translateZ(-50px) scale(1.2)",
           }}
         >
           {/* Main Panel Surface (virtual backing) */}
           <div
             className="absolute inset-0 -z-10 bg-gradient-to-br from-border/10 to-transparent rounded-sm"
             style={{
-              transform: "translateZ(-20px) scale(1.02)",
+              transformStyle: "preserve-3d",
+              // transform: "translateZ(-20px) scale(1.02)",
             }}
           />
 
@@ -179,10 +207,10 @@ export function ThreePanelInventory<T extends { id: string }>({
                 style={{
                   transformStyle: "preserve-3d",
                   transform: "translateZ(0px)",
-                  boxShadow: "0 0 100px rgba(0,0,0,0.5)",
+                  // boxShadow: "0 0 100px rgba(0,0,0,0.5)",
                 }}
               >
-                <div className="bg-transparent border border-border/100 p-4 h-[600px] panel-corners-inner">
+                <div className="bg-transparent border border-white/20 border-solid/100 p-4 h-[600px] panel-corners-inner">
                   <PlayerSidebar stats={playerStats} />
                 </div>
               </div>
@@ -192,11 +220,10 @@ export function ThreePanelInventory<T extends { id: string }>({
                 className="flex-1 flex flex-col min-w-[480px] max-w-[600px] panel-corners"
                 style={{
                   transformStyle: "preserve-3d",
-                  transform: "translateZ(0px)",
-                  boxShadow: "0 0 100px rgba(0,0,0,0.5)",
+                  // boxShadow: "0 0 100px rgba(0,0,0,0.5)",
                 }}
               >
-                <div className="bg-transparent border border-border/100 p-4 flex flex-col h-[600px] panel-corners-inner">
+                <div className="bg-transparent border border-white/20 border-solid/100 p-4 flex flex-col h-[600px] panel-corners-inner">
                   <InventoryHeader
                     inventoryCount={objects.length}
                     maxInventory={maxInventory}
@@ -212,28 +239,38 @@ export function ThreePanelInventory<T extends { id: string }>({
                   {/* Scrollable Object List */}
                   <div
                     className="flex-1 overflow-y-auto custom-scrollbar"
-                    style={{ padding: "8px", paddingRight: "14px" }}
+                    style={{ padding: "8px", paddingRight: "14px" , 
+                      transformStyle: "preserve-3d",}}
                   >
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-3" 
+                        style={{ 
+                            transformStyle: "preserve-3d", 
+                            }}>
                       {filteredAndSortedObjects.map((obj) => (
                         <div
                           key={obj.id}
-                          style={{ perspective: "600px" }}
+                          style={{ perspective: "600px", 
+                            transformStyle: "preserve-3d", }}
                         >
                           <div
+                            className="panel-corners"
                             style={{
                               transform:
                                 selectedObject?.id === obj.id
                                   ? "translateZ(10px)"
                                   : "translateZ(0px)",
                               transition: "transform 100ms ease-in-out",
+                              position: "relative", 
+                              transformStyle: "preserve-3d",
                             }}
                           >
+                            
                             {renderCard(
                               obj,
                               selectedObject?.id === obj.id,
                               () => setSelectedObject(obj)
                             )}
+                            
                           </div>
                         </div>
                       ))}
@@ -255,10 +292,10 @@ export function ThreePanelInventory<T extends { id: string }>({
                   style={{
                     transformStyle: "preserve-3d",
                     transform: "translateZ(0px)",
-                    boxShadow: "0 0 100px rgba(0,0,0,0.5)",
+                    // boxShadow: "0 0 100px rgba(0,0,0,0.5)",
                   }}
                 >
-                  <div className="bg-transparent border border-border/100 p-4 h-[600px] relative panel-corners-inner">
+                  <div className="bg-transparent border border-white/20 border-solid/100 p-4 h-[600px] relative panel-corners-inner">
                     {renderDetail(selectedObject)}
                   </div>
                 </div>

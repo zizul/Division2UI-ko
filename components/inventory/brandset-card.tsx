@@ -50,11 +50,14 @@ export function BrandSetCard({
   const sel = isSelected;
 
   return (
+    <div
+                              className="panel-corners-inner"
+                            >
     <button
       onClick={onClick}
       className={cn(
-        "relative w-full h-[88px] overflow-hidden border text-left pointer-events-auto",
-        "border-border/60 hover:border-border/80"
+        "relative w-full h-[88px] overflow-hidden border text-left pointer-events-auto ",
+        "border-white/20 border-solid/60 hover:border-solid/80"
       )}
     >
       {/* Left core attribute color bar */}
@@ -139,5 +142,6 @@ export function BrandSetCard({
         </span>
       </div>
     </button>
+    </div>
   );
 }

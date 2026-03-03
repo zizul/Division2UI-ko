@@ -42,8 +42,11 @@ export function WeaponCard({ weapon, isSelected, onClick }: WeaponCardProps) {
       onClick={onClick}
       className={cn(
         "relative w-full h-[88px] overflow-hidden border text-left pointer-events-auto",
-        "border-border/60 hover:border-border/80"
+        "border-white/50 border-solid/60 hover:border-solid/80"
       )}
+      style={{
+        zIndex: "2",
+      }}
     >
       {/* Left rarity color bar */}
       <div
