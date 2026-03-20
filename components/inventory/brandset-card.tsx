@@ -52,6 +52,9 @@ export function BrandSetCard({
   return (
     <div
                               className="panel-corners-inner"
+                              style={{
+                                transformStyle: "preserve-3d",
+                              }}
                             >
     <button
       onClick={onClick}
