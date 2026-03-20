@@ -40,7 +40,7 @@ export default function HomePage() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 80% 50% at 50% 40%, rgba(255, 150, 50, 0.06) 0%, transparent 60%),
+            radial-gradient(ellipse 80% 50% at 50% 40%, rgba(255, 138, 7, 0.06) 0%, transparent 60%),
             radial-gradient(ellipse 60% 40% at 30% 60%, rgba(100, 150, 255, 0.03) 0%, transparent 50%)
           `,
         }}

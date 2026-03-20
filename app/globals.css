@@ -11,20 +11,20 @@
   --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.14 0.005 250);
   --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.75 0.18 55);
+  --primary: #ff8a07;
   --primary-foreground: oklch(0.12 0 0);
   --secondary: oklch(0.22 0.005 250);
   --secondary-foreground: oklch(0.85 0 0);
   --muted: oklch(0.25 0.005 250);
   --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.75 0.18 55);
+  --accent: #ff8a07;
   --accent-foreground: oklch(0.12 0 0);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.95 0 0);
   --border: oklch(0.3 0.01 250);
   --input: oklch(0.2 0.005 250);
-  --ring: oklch(0.75 0.18 55);
-  --chart-1: oklch(0.75 0.18 55);
+  --ring: #ff8a07;
+  --chart-1: #ff8a07;
   --chart-2: oklch(0.6 0.15 150);
   --chart-3: oklch(0.5 0.12 250);
   --chart-4: oklch(0.7 0.15 30);
@@ -32,21 +32,21 @@
   --radius: 0.25rem;
   --sidebar: oklch(0.1 0.005 250);
   --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.75 0.18 55);
+  --sidebar-primary: #ff8a07;
   --sidebar-primary-foreground: oklch(0.12 0 0);
   --sidebar-accent: oklch(0.2 0.005 250);
   --sidebar-accent-foreground: oklch(0.95 0 0);
   --sidebar-border: oklch(0.25 0.01 250);
-  --sidebar-ring: oklch(0.75 0.18 55);
+  --sidebar-ring: #ff8a07;
   
   /* Custom Division 2 Colors */
-  --orange-glow: oklch(0.75 0.18 55);
-  --orange-bright: oklch(0.8 0.2 55);
-  --orange-dim: oklch(0.6 0.15 55);
+  --orange-glow: #ff8a07;
+  --orange-bright: color-mix(in srgb, #ff8a07 72%, white);
+  --orange-dim: color-mix(in srgb, #ff8a07 58%, black);
   --red-stat: oklch(0.6 0.2 25);
   --green-stat: oklch(0.65 0.2 145);
   --blue-stat: oklch(0.6 0.15 250);
-  --high-end: oklch(0.75 0.18 55);
+  --high-end: #ff8a07;
   --gear-set: oklch(0.6 0.18 145);
   --superior: oklch(0.65 0.2 330);
   --standard: oklch(0.5 0.1 250);
@@ -205,8 +205,8 @@
 
 .panel-glow-orange {
   box-shadow: 
-    0 0 40px rgba(255, 150, 50, 0.15),
-    0 0 80px rgba(255, 150, 50, 0.08),
+    0 0 40px rgba(255, 138, 7, 0.15),
+    0 0 80px rgba(255, 138, 7, 0.08),
     0 0 30px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
@@ -215,7 +215,7 @@
 .ambient-light {
   background: radial-gradient(
     ellipse at 30% 20%,
-    rgba(255, 150, 50, 0.03) 0%,
+    rgba(255, 138, 7, 0.03) 0%,
     transparent 50%
   );
 }

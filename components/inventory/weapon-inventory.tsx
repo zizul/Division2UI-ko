@@ -87,7 +87,7 @@ export function WeaponInventory() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 80% 50% at 70% 40%, rgba(255, 150, 50, 0.04) 0%, transparent 60%),
+            radial-gradient(ellipse 80% 50% at 70% 40%, rgba(255, 138, 7, 0.04) 0%, transparent 60%),
             radial-gradient(ellipse 60% 40% at 30% 60%, rgba(100, 150, 255, 0.02) 0%, transparent 50%)
           `,
         }}
