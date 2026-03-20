@@ -181,13 +181,13 @@
 }
 
 .panel-corners-inner::before {
-  bottom: -1px;
-  left: -1px;
+  bottom: 6px;
+  left: 0px;
 }
 
 .panel-corners-inner::after {
-  bottom: -1px;
-  right: -1px;
+  bottom: 6px;
+  right: 0px;
 }
 
 /* 3D Panel Effects */
