@@ -1,36 +1,19 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import type { WeaponCategory, SortOption } from "@/lib/weapon-data";
 import { ChevronDown } from "lucide-react";
 
 interface InventoryHeaderProps {
   inventoryCount: number;
   maxInventory: number;
-  selectedCategory: WeaponCategory | "All";
-  onCategoryChange: (category: WeaponCategory | "All") => void;
-  sortBy: SortOption;
-  onSortChange: (sort: SortOption) => void;
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
+  sortBy: string;
+  onSortChange: (sort: string) => void;
   slotLabel: string;
+  categories: { value: string; label: string }[];
+  sortOptions: { value: string; label: string }[];
 }
-
-const categories: (WeaponCategory | "All")[] = [
-  "All",
-  "Assault Rifle",
-  "SMG",
-  "Rifle",
-  "LMG",
-  "Shotgun",
-  "Pistol",
-  "Marksman Rifle",
-];
-
-const sortOptions: { value: SortOption; label: string }[] = [
-  { value: "score", label: "Score" },
-  { value: "damage", label: "Damage" },
-  { value: "rpm", label: "RPM" },
-  { value: "name", label: "Name" },
-];
 
 export function InventoryHeader({
   inventoryCount,
@@ -40,6 +23,8 @@ export function InventoryHeader({
   sortBy,
   onSortChange,
   slotLabel,
+  categories,
+  sortOptions,
 }: InventoryHeaderProps) {
   return (
     <div className="mb-4">
@@ -60,12 +45,12 @@ export function InventoryHeader({
         <div className="relative">
           <select
             value={selectedCategory}
-            onChange={(e) => onCategoryChange(e.target.value as WeaponCategory | "All")}
+            onChange={(e) => onCategoryChange(e.target.value)}
             className="appearance-none bg-secondary border border-border/50 text-foreground text-sm px-3 py-1.5 pr-8 focus:outline-none focus:border-orange-glow/50"
           >
             {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
+              <option key={cat.value} value={cat.value}>
+                {cat.label}
               </option>
             ))}
           </select>
@@ -75,18 +60,18 @@ export function InventoryHeader({
         {/* Sort Options */}
         <div className="flex items-center gap-1">
           <span className="text-xs text-muted-foreground mr-2">Sort:</span>
-          {sortOptions.map((option) => (
+          {sortOptions.map((opt) => (
             <button
-              key={option.value}
-              onClick={() => onSortChange(option.value)}
+              key={opt.value}
+              onClick={() => onSortChange(opt.value)}
               className={cn(
                 "px-3 py-1 text-xs transition-all duration-200",
-                sortBy === option.value
+                sortBy === opt.value
                   ? "bg-orange-glow text-primary-foreground"
                   : "bg-secondary text-muted-foreground hover:text-foreground"
               )}
             >
-              {option.label}
+              {opt.label}
             </button>
           ))}
         </div>
