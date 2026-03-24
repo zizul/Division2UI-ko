@@ -51,7 +51,7 @@ export function BrandSetCard({
 
   return (
     <div
-                              className="panel-corners-inner"
+                              className="panel-corners-inner h-full"
                               style={{
                                 transformStyle: "preserve-3d",
                               }}
@@ -59,7 +59,7 @@ export function BrandSetCard({
     <button
       onClick={onClick}
       className={cn(
-        "relative w-full h-[88px] overflow-hidden border text-left pointer-events-auto ",
+        "relative w-full h-full overflow-hidden border text-left pointer-events-auto ",
         "border-white/20 border-solid/60 hover:border-solid/80"
       )}
     >
