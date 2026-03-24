@@ -249,11 +249,13 @@ export function ThreePanelInventory<T extends { id: string }>({
                       {filteredAndSortedObjects.map((obj) => (
                         <div
                           key={obj.id}
-                          style={{ perspective: "600px", 
+                          className="h-[80px]"
+                          style={{ 
+                            perspective: "600px", 
                             transformStyle: "preserve-3d", }}
                         >
                           <div
-                            className="panel-corners"
+                            className="panel-corners h-full"
                             style={{
                               transform:
                                 selectedObject?.id === obj.id

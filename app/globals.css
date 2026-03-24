@@ -181,12 +181,12 @@
 }
 
 .panel-corners-inner::before {
-  bottom: 6px;
+  bottom: 0px;
   left: 0px;
 }
 
 .panel-corners-inner::after {
-  bottom: 6px;
+  bottom: 0px;
   right: 0px;
 }
 
